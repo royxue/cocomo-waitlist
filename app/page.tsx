@@ -2,13 +2,21 @@
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import Image from 'next/image'
+
+// Import product images
+import product1 from '@/app/images/product_1.png'
+import product2 from '@/app/images/product_2.png'
+import product3 from '@/app/images/product_3.png'
+import product4 from '@/app/images/product_4.png'
+import logo from '@/app/images/logo.png'
 
 const RobotIcon = () => (
   <motion.svg
     width="80"
     height="80"
     viewBox="0 0 100 100"
-    className="text-warm-600"
+    className="text-jpRed-500"
     animate={{ rotate: [0, 5, -5, 0] }}
     transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
   >
@@ -45,6 +53,58 @@ const FloatingElement = ({ children, delay = 0 }: { children: React.ReactNode, d
     transition={{ duration: 3, repeat: Infinity, delay }}
   >
     {children}
+  </motion.div>
+)
+
+const FloatingProductImage = ({
+  src,
+  alt,
+  position,
+  delay = 0,
+  size = 120
+}: {
+  src: any,
+  alt: string,
+  position: 'left' | 'right',
+  delay?: number,
+  size?: number
+}) => (
+  <motion.div
+    initial={{ opacity: 0, scale: 0.5 }}
+    animate={{
+      opacity: 1,
+      scale: 1,
+      y: [0, -20, 0],
+      rotate: [0, 5, -5, 0]
+    }}
+    transition={{
+      opacity: { duration: 1, delay },
+      scale: { duration: 1, delay },
+      y: { duration: 4, repeat: Infinity, delay },
+      rotate: { duration: 6, repeat: Infinity, delay: delay + 1 }
+    }}
+    className={`fixed z-50 hidden lg:block ${
+      position === 'left'
+        ? 'left-2 xl:left-8'
+        : 'right-2 xl:right-8'
+    }`}
+    style={{
+      top: `${20 + delay * 40}%`,
+    }}
+  >
+    <motion.div
+      whileHover={{ scale: 1.1, rotate: 10 }}
+      transition={{ type: "spring", stiffness: 300 }}
+      className="glass-effect rounded-2xl p-4 hover-lift"
+    >
+      <Image
+        src={src}
+        alt={alt}
+        width={size}
+        height={size}
+        className="object-contain"
+      />
+    </motion.div>
   </motion.div>
 )
 
@@ -86,7 +146,37 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen gradient-bg">
+    <main className="min-h-screen gradient-bg relative overflow-hidden">
+      {/* Floating Product Images */}
+      <FloatingProductImage
+        src={product1}
+        alt="COCOMO Product 1"
+        position="left"
+        delay={0}
+        size={180}
+      />
+      <FloatingProductImage
+        src={product2}
+        alt="COCOMO Product 2"
+        position="right"
+        delay={0.5}
+        size={200}
+      />
+      <FloatingProductImage
+        src={product3}
+        alt="COCOMO Product 3"
+        position="left"
+        delay={1}
+        size={190}
+      />
+      <FloatingProductImage
+        src={product4}
+        alt="COCOMO Product 4"
+        position="right"
+        delay={1.5}
+        size={210}
+      />
+
       {/* Header */}
       <motion.header
         initial={{ opacity: 0, y: -20 }}
@@ -99,10 +189,7 @@ export default function Home() {
             whileHover={{ scale: 1.05 }}
             className="flex items-center space-x-3"
           >
-            <RobotIcon />
-            <h1 className="text-3xl font-bold text-warm-800 tracking-wide">
-              COCOMO
-            </h1>
+            <Image src={logo} alt="Ludens AI" width={200} height={100} />
           </motion.div>
         </div>
       </motion.header>
@@ -115,34 +202,26 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <h2 className="text-5xl md:text-6xl font-bold text-warm-900 mb-6 text-shadow">
-              あなたの新しい
-              <span className="text-cherry-500 block mt-2">家族</span>
+            <h2 className="text-5xl md:text-6xl font-bold text-jpGray-900 mb-6 text-shadow">
+              子育てを支える
+              <span className="text-jpRed-500 block mt-2">新しい仲間</span>
             </h2>
-            <p className="text-xl md:text-2xl text-warm-700 mb-8 leading-relaxed">
-              COCOMOは、あなたの日常に寄り添う<br />
-              次世代コンパニオンロボットです
+            <br />
+      <br />
+            <br />
+            <p className="text-xl md:text-2xl text-jpGray-700 mb-8 leading-relaxed">
+            子どもには「考える力」や「ことばの力」を
+            育むおともだちとして、<br />
+            親には子育ての不安をやわらげる、<br />
+            心強いサポーターとして寄り添います。<br />
+            ぬいぐるみのやさしさとAIのふしぎさをあわせもつ、<br />
+            新しい家族の仲間です。<br />
             </p>
           </motion.div>
 
-          {/* Robot Illustration Placeholder */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.4 }}
-            className="my-16"
-          >
-            <FloatingElement>
-              <div className="w-64 h-64 mx-auto warm-gradient rounded-full flex items-center justify-center glass-effect">
-                <motion.div
-                  animate={{ scale: [1, 1.1, 1] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                >
-                  <RobotIcon />
-                </motion.div>
-              </div>
-            </FloatingElement>
-          </motion.div>
+          <br />
+          <br />
+          <br />
 
           {/* Features */}
           <motion.div
@@ -154,8 +233,8 @@ export default function Home() {
             <FloatingElement delay={0.1}>
               <div className="glass-effect rounded-2xl p-8 hover-lift">
                 <div className="text-4xl mb-4">🤗</div>
-                <h3 className="text-xl font-bold text-warm-800 mb-3">温かいふれあい</h3>
-                <p className="text-warm-600">
+                <h3 className="text-xl font-bold text-jpGray-800 mb-3">温かいふれあい</h3>
+                <p className="text-jpGray-600">
                   自然な会話と感情豊かな表現で、家族のような絆を育みます
                 </p>
               </div>
@@ -164,8 +243,8 @@ export default function Home() {
             <FloatingElement delay={0.2}>
               <div className="glass-effect rounded-2xl p-8 hover-lift">
                 <div className="text-4xl mb-4">🧠</div>
-                <h3 className="text-xl font-bold text-warm-800 mb-3">学習する AI</h3>
-                <p className="text-warm-600">
+                <h3 className="text-xl font-bold text-jpGray-800 mb-3">学習する AI</h3>
+                <p className="text-jpGray-600">
                   あなたの好みや習慣を学習し、より良いサポートを提供します
                 </p>
               </div>
@@ -174,8 +253,8 @@ export default function Home() {
             <FloatingElement delay={0.3}>
               <div className="glass-effect rounded-2xl p-8 hover-lift">
                 <div className="text-4xl mb-4">🏠</div>
-                <h3 className="text-xl font-bold text-warm-800 mb-3">生活サポート</h3>
-                <p className="text-warm-600">
+                <h3 className="text-xl font-bold text-jpGray-800 mb-3">生活サポート</h3>
+                <p className="text-jpGray-600">
                   日常のタスクから健康管理まで、幅広くサポートします
                 </p>
               </div>
@@ -190,11 +269,13 @@ export default function Home() {
             className="max-w-md mx-auto"
           >
             <div className="glass-effect rounded-2xl p-8">
-              <h3 className="text-2xl font-bold text-warm-900 mb-4">
+              <h3 className="text-2xl font-bold text-jpGray-900 mb-4">
                 先行予約受付中
               </h3>
-              <p className="text-warm-700 mb-6">
-                COCOMOの発売をいち早くお知らせします
+              <p className="text-jpGray-700 mb-6">
+              メールリストに登録して、1番にCocomoを体験しよう！<br />
+              今ご登録いただいた方には、正式販売前に25％OFFのクーポンを配信させていただきます。<br />
+              販売は来年の春を予定しております。
               </p>
 
               <AnimatePresence mode="wait">
@@ -214,7 +295,7 @@ export default function Home() {
                       className={`w-full px-4 py-3 rounded-xl border focus:outline-none focus:ring-2 bg-white/80 ${
                         error
                           ? 'border-red-300 focus:ring-red-400'
-                          : 'border-warm-200 focus:ring-warm-400'
+                          : 'border-jpGray-200 focus:ring-jpBlue-400'
                       }`}
                       required
                     />
@@ -232,7 +313,7 @@ export default function Home() {
                       disabled={isLoading}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
-                      className="w-full bg-gradient-to-r from-warm-500 to-cherry-500 text-white font-bold py-3 px-6 rounded-xl hover:from-warm-600 hover:to-cherry-600 transition-all duration-300 pulse-glow disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full bg-gradient-to-r from-jpRed-500 to-jpBlue-500 text-white font-bold py-3 px-6 rounded-xl hover:from-jpRed-600 hover:to-jpBlue-600 transition-all duration-300 pulse-glow disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {isLoading ? (
                         <motion.div
@@ -260,10 +341,10 @@ export default function Home() {
                     >
                       ✨
                     </motion.div>
-                    <h4 className="text-xl font-bold text-warm-900 mb-2">
+                    <h4 className="text-xl font-bold text-jpGray-900 mb-2">
                       ありがとうございます！
                     </h4>
-                    <p className="text-warm-700">
+                    <p className="text-jpGray-700">
                       先行予約を受け付けました。<br />
                       発売情報をお送りします。
                     </p>
@@ -280,8 +361,8 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 1 }}
             className="mt-16 text-center"
           >
-            <p className="text-warm-600 mb-4">すでに多くの方にご登録いただいています</p>
-            <div className="flex justify-center space-x-8 text-warm-800">
+            <p className="text-jpGray-600 mb-4">すでに多くの方にご登録いただいています</p>
+            <div className="flex justify-center space-x-8 text-jpGray-800">
               <div className="text-center">
                 <div className="text-2xl font-bold">840+</div>
                 <div className="text-sm">先行予約者</div>
@@ -306,14 +387,14 @@ export default function Home() {
         transition={{ duration: 0.8, delay: 1.2 }}
         className="container mx-auto px-6 py-8 text-center"
       >
-        <div className="border-t border-warm-200 pt-8">
-          <p className="text-warm-600 mb-4">
+        <div className="border-t border-jpGray-200 pt-8">
+          <p className="text-jpGray-600 mb-4">
             © 2025 COCOMO. すべての権利を保有します。
           </p>
-          <div className="flex justify-center space-x-6 text-warm-500">
-            <a href="#" className="hover:text-warm-700 transition-colors">プライバシーポリシー</a>
-            <a href="#" className="hover:text-warm-700 transition-colors">利用規約</a>
-            <a href="#" className="hover:text-warm-700 transition-colors">お問い合わせ</a>
+          <div className="flex justify-center space-x-6 text-jpGray-500">
+            <a href="#" className="hover:text-jpGray-700 transition-colors">プライバシーポリシー</a>
+            <a href="#" className="hover:text-jpGray-700 transition-colors">利用規約</a>
+            <a href="#" className="hover:text-jpGray-700 transition-colors">お問い合わせ</a>
           </div>
         </div>
       </motion.footer>

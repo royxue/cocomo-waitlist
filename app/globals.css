@@ -5,31 +5,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 254, 251, 247;
-  --background-end-rgb: 250, 240, 232;
+  --foreground-rgb: 31, 41, 55;
+  --background-start-rgb: 255, 255, 255;
+  --background-end-rgb: 249, 250, 251;
 }
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: white;
 }
 
 .gradient-bg {
-  background: linear-gradient(135deg, #fdf9f4 0%, #faf0e8 50%, #f4ddc5 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #f9fafb 50%, #f0f9ff 100%);
 }
 
-.warm-gradient {
-  background: linear-gradient(45deg, #f6d4a9, #fae8d1, #fdf5ed);
+.jp-red-gradient {
+  background: linear-gradient(45deg, #fef7f6, #fdeeed, #fbd5d2);
 }
 
-.cherry-gradient {
-  background: linear-gradient(45deg, #fad5d5, #fdecec, #fef7f7);
+.jp-blue-gradient {
+  background: linear-gradient(45deg, #f0f9ff, #e0f2fe, #bae6fd);
 }
 
 .text-shadow {
@@ -57,9 +52,18 @@ body {
 
 @keyframes pulse-glow {
   0%, 100% {
-    box-shadow: 0 0 20px rgba(234, 159, 72, 0.4);
+    box-shadow: 0 0 20px rgba(232, 90, 79, 0.4);
   }
   50% {
-    box-shadow: 0 0 30px rgba(234, 159, 72, 0.6);
+    box-shadow: 0 0 30px rgba(232, 90, 79, 0.6);
+  }
+}
+
+/* Mobile product images - show as smaller decoration */
+@media (max-width: 1024px) {
+  .floating-product-mobile {
+    position: absolute;
+    opacity: 0.3;
+    pointer-events: none;
   }
 }
