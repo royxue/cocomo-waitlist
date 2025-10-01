@@ -195,6 +195,34 @@ export default function Home() {
         </div>
       </motion.header>
 
+      {/* Mobile Product Image */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8, delay: 0.3 }}
+        className="lg:hidden flex justify-center"
+      >
+        <motion.div
+          animate={{
+            y: [0, -15, 0],
+            rotate: [0, 3, -3, 0]
+          }}
+          transition={{
+            y: { duration: 3, repeat: Infinity, ease: "easeInOut" },
+            rotate: { duration: 5, repeat: Infinity, ease: "easeInOut" }
+          }}
+          className="glass-effect rounded-2xl p-6"
+        >
+          <Image
+            src={product1}
+            alt="COCOMO Product"
+            width={220}
+            height={220}
+            className="object-contain"
+          />
+        </motion.div>
+      </motion.div>
+
       {/* Hero Section */}
       <section className="container mx-auto px-6 py-12">
         <div className="max-w-4xl mx-auto text-center">
@@ -313,7 +341,7 @@ export default function Home() {
                       disabled={isLoading}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
-                      className="w-full bg-gradient-to-r from-jpRed-500 to-jpBlue-500 text-white font-bold py-3 px-6 rounded-xl hover:from-jpRed-600 hover:to-jpBlue-600 transition-all duration-300 pulse-glow disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full bg-jpRed-500 text-white font-bold py-3 px-6 rounded-xl hover:bg-jpRed-600 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {isLoading ? (
                         <motion.div
@@ -411,11 +439,14 @@ export default function Home() {
           <p className="text-jpGray-600 mb-4">
             © 2025 COCOMO. すべての権利を保有します。
           </p>
-          <div className="flex justify-center space-x-6 text-jpGray-500">
+          <div className="flex justify-center space-x-6 text-jpGray-500 mb-4">
             <a href="#" className="hover:text-jpGray-700 transition-colors">プライバシーポリシー</a>
             <a href="#" className="hover:text-jpGray-700 transition-colors">利用規約</a>
             <a href="#" className="hover:text-jpGray-700 transition-colors">お問い合わせ</a>
           </div>
+          <p className="text-jpGray-600">
+            お問い合わせ: <a href="mailto:contact-jp@ludensai.com" className="text-jpRed-500 hover:text-jpRed-600 transition-colors">contact-jp@ludensai.com</a>
+          </p>
         </div>
       </motion.footer>
     </main>

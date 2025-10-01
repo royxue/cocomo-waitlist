@@ -10,16 +10,16 @@ module.exports = {
       colors: {
         // Japanese light red palette (Sakura/Coral inspired)
         jpRed: {
-          50: '#fef7f6',
-          100: '#fdeeed',
-          200: '#fbd5d2',
-          300: '#f7b3ad',
-          400: '#f18a80',
-          500: '#e85a4f',
-          600: '#d4453a',
-          700: '#b2362d',
-          800: '#932e26',
-          900: '#7a2a24',
+          50: '#fff5f7',
+          100: '#ffe9ed',
+          200: '#ffd3db',
+          300: '#ffadb9',
+          400: '#ff7a8e',
+          500: '#ff4563',
+          600: '#e6254a',
+          700: '#c01a3d',
+          800: '#9a1635',
+          900: '#7d1530',
         },
         // Japanese light blue palette (Mizuiro inspired) 
         jpBlue: {
