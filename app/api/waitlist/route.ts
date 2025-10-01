@@ -6,7 +6,7 @@ export const runtime = 'nodejs'
 
 export async function POST(request: NextRequest) {
   try {
-    const { email } = await request.json()
+    const { email, type = 'regular' } = await request.json()
 
     // Validate email
     if (!email || !email.includes('@')) {
@@ -16,11 +16,20 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Check if email already exists
+    // Validate type
+    if (!['regular', 'angel'].includes(type)) {
+      return NextResponse.json(
+        { error: 'Invalid type' },
+        { status: 400 }
+      )
+    }
+
+    // Check if email already exists for this type
     const { data: existingEntry } = await supabase
       .from('waitlist')
-      .select('email')
+      .select('email, type')
       .eq('email', email.toLowerCase())
+      .eq('type', type)
       .single()
 
     if (existingEntry) {
@@ -36,7 +45,8 @@ export async function POST(request: NextRequest) {
       .insert([
         {
           email: email.toLowerCase(),
-          source: 'landing_page',
+          type: type,
+          source: type === 'angel' ? 'angel_page' : 'landing_page',
           created_at: new Date().toISOString(),
         },
       ])

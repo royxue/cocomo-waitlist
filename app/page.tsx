@@ -299,10 +299,10 @@ export default function Home() {
           >
             <div className="glass-effect rounded-2xl p-8">
               <h3 className="text-2xl font-bold text-jpGray-900 mb-4">
-                先行予約受付中
+                最新情報をお届け
               </h3>
               <p className="text-jpGray-700 mb-6">
-              メールリストに登録して、1番にCocomoを体験しよう！<br />
+              メールリストに登録して、Cocomoの最新ニュースをいち早く受け取りましょう！<br />
               販売は来年の春を予定しております。
               </p>
 
@@ -350,7 +350,7 @@ export default function Home() {
                           className="w-6 h-6 border-2 border-white border-t-transparent rounded-full mx-auto"
                         />
                       ) : (
-                        '先行予約に申し込む'
+                        '最新情報を受け取る'
                       )}
                     </motion.button>
                   </motion.form>
@@ -373,8 +373,8 @@ export default function Home() {
                       ありがとうございます！
                     </h4>
                     <p className="text-jpGray-700">
-                      先行予約を受け付けました。<br />
-                      発売情報をお送りします。
+                      ご登録いただきありがとうございます。<br />
+                      最新情報をお送りします。
                     </p>
                   </motion.div>
                 )}
