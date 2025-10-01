@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
+import Link from 'next/link'
 
 // Import product images
 import product1 from '@/app/images/product_1.png'
@@ -243,9 +244,9 @@ export default function Home() {
             <FloatingElement delay={0.2}>
               <div className="glass-effect rounded-2xl p-8 hover-lift">
                 <div className="text-4xl mb-4">🧠</div>
-                <h3 className="text-xl font-bold text-jpGray-800 mb-3">学習する AI</h3>
+                <h3 className="text-xl font-bold text-jpGray-800 mb-3">最先端のAI</h3>
                 <p className="text-jpGray-600">
-                  あなたの好みや習慣を学習し、より良いサポートを提供します
+                  最先端のAI技術が、Cocomoをまるで本物のペットのように生き生きとさせます
                 </p>
               </div>
             </FloatingElement>
@@ -253,9 +254,9 @@ export default function Home() {
             <FloatingElement delay={0.3}>
               <div className="glass-effect rounded-2xl p-8 hover-lift">
                 <div className="text-4xl mb-4">🏠</div>
-                <h3 className="text-xl font-bold text-jpGray-800 mb-3">生活サポート</h3>
+                <h3 className="text-xl font-bold text-jpGray-800 mb-3">家族と共に成長</h3>
                 <p className="text-jpGray-600">
-                  日常のタスクから健康管理まで、幅広くサポートします
+                  家族の愛情とケアを受けながら、Cocomoは一緒に成長していきます
                 </p>
               </div>
             </FloatingElement>
@@ -274,7 +275,6 @@ export default function Home() {
               </h3>
               <p className="text-jpGray-700 mb-6">
               メールリストに登録して、1番にCocomoを体験しよう！<br />
-              今ご登録いただいた方には、正式販売前に25％OFFのクーポンを配信させていただきます。<br />
               販売は来年の春を予定しております。
               </p>
 
@@ -352,6 +352,26 @@ export default function Home() {
                 )}
               </AnimatePresence>
             </div>
+          </motion.div>
+
+          {/* Angel User Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1 }}
+            className="mt-8 text-center"
+          >
+            <Link href="/angel">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center space-x-2 bg-white/80 backdrop-blur-sm text-jpRed-500 font-semibold py-3 px-8 rounded-xl border-2 border-jpRed-500 hover:bg-jpRed-500 hover:text-white transition-all duration-300"
+              >
+                <span>✨</span>
+                <span>エンジェルユーザー募集中</span>
+                <span>→</span>
+              </motion.button>
+            </Link>
           </motion.div>
 
           {/* Social Proof */}
