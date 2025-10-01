@@ -231,7 +231,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <h2 className="text-5xl md:text-6xl font-bold text-jpGray-900 mb-6 text-shadow">
+            <h2 className="text-4xl md:text-5xl font-bold text-jpGray-900 mb-6 text-shadow">
               子育てを支える
               <span className="text-jpRed-500 block mt-2">新しい仲間</span>
             </h2>
@@ -274,7 +274,7 @@ export default function Home() {
                 <div className="text-4xl mb-4">🧠</div>
                 <h3 className="text-xl font-bold text-jpGray-800 mb-3">最先端のAI</h3>
                 <p className="text-jpGray-600">
-                  最先端のAI技術が、Cocomoをまるで本物のペットのように生き生きとさせます
+                  最先端のAI技術が、Cocomoをまるで本当のパートナーとしてあなたをサポートします
                 </p>
               </div>
             </FloatingElement>
@@ -284,7 +284,7 @@ export default function Home() {
                 <div className="text-4xl mb-4">🏠</div>
                 <h3 className="text-xl font-bold text-jpGray-800 mb-3">家族と共に成長</h3>
                 <p className="text-jpGray-600">
-                  家族の愛情とケアを受けながら、Cocomoは一緒に成長していきます
+                  家族の愛とケアを受けながら、Cocomoは一緒に成長していきます
                 </p>
               </div>
             </FloatingElement>
